@@ -1,0 +1,40 @@
+description: |
+  Run Cypress tests.
+
+executor: default
+
+working_directory: /app
+
+steps:
+  - checkout
+  - run:
+      name: Install GovCMS distribution
+      command: |
+        composer update --profile --prefer-dist --optimize-autoloader
+  - run:
+      name: Setup webserver
+      command: |
+        echo "127.0.0.1 local.govcms.gov.au" | tee --append /etc/hosts
+        service apache2 restart
+  - run:
+      name: Install GovCMS site
+      command: >
+        cd web
+
+        ../bin/drush si -y govcms
+        --db-url=sqlite://sites/default/files/.ht.sqlite
+        --site-name='GovCMS'
+        --account-pass=password
+        install_configure_form.enable_update_status_emails=NULL
+        install_configure_form.enable_update_status_module=NULL || true
+
+        chown -R www-data:www-data /app/web/sites
+  - run:
+      name: Install Cypress Dependencies
+      command: |
+        cp -r /tests /app/tests
+        cd tests/cy && npm ci
+  - run:
+      name: Install Cypress Dependencies
+      command: |
+        cd tests/cy && npx cypress run --config baseUrl=http://local.govcms.gov.au/
