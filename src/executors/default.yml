@@ -1,7 +1,7 @@
 description: >
   GovCMS Tests Docker Image.
 docker:
-  - image: 'govcmstesting/php:<<parameters.php_version>>'
+  - image: 'govcmstesting/ci:<<parameters.php_version>>'
 parameters:
   php_version:
     default: "8.2-apache"
