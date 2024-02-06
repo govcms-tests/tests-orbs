@@ -1,7 +1,7 @@
 # GovCMS Tests CircleCI Orb
 
 
-[![CircleCI Build Status](https://circleci.com/gh/govcms-tests/tests-orbs.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/govcms-tests/tests-orbs) [![CircleCI Orb Version](https://badges.circleci.com/orbs/govcms-tests/ci-tests.svg)](https://circleci.com/developer/orbs/orb/govcms-tests/ci-tests) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/govcms-tests/tests-orbs/master/LICENSE)
+[![CircleCI Build Status](https://circleci.com/gh/govcms-tests/tests-orbs.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/govcms-tests/tests-orbs) [![CircleCI Orb Version](https://badges.circleci.com/orbs/govcms/tests.svg)](https://circleci.com/developer/orbs/orb/govcms/tests) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/govcms-tests/tests-orbs/master/LICENSE)
 
 
 
@@ -15,7 +15,7 @@ _**Edit this area to include a custom title and description.**_
 
 ## Resources
 
-[CircleCI Orb Registry Page](https://circleci.com/developer/orbs/orb/govcms-tests/ci-tests) - The official registry page of this orb for all versions, executors, commands, and jobs described.
+[CircleCI Orb Registry Page](https://circleci.com/developer/orbs/orb/govcms/tests) - The official registry page of this orb for all versions, executors, commands, and jobs described.
 
 [CircleCI Orb Docs](https://circleci.com/docs/orb-intro/#section=configuration) - Docs for using, creating, and publishing CircleCI Orbs.
 
@@ -27,7 +27,7 @@ We welcome [issues](https://github.com/2bb972bb-8ca1-4ad8-a28d-5d967626c66f/test
 1. Merge pull requests with desired changes to the main branch.
     - For the best experience, squash-and-merge and use [Conventional Commit Messages](https://conventionalcommits.org/).
 2. Find the current version of the orb.
-    - You can run `circleci orb info govcms-tests/ci-tests | grep "Latest"` to see the current version.
+    - You can run `circleci orb info govcms/tests | grep "Latest"` to see the current version.
 3. Create a [new Release](https://github.com/2bb972bb-8ca1-4ad8-a28d-5d967626c66f/tests-orbs/releases/new) on GitHub.
     - Click "Choose a tag" and _create_ a new [semantically versioned](http://semver.org/) tag. (ex: v1.0.0)
       - We will have an opportunity to change this before we publish if needed after the next step.
