@@ -19,6 +19,8 @@ steps:
   - run:
       name: Install GovCMS site
       command: >
+        pwd
+        ls -al
         cd web
 
         ../bin/drush si -y govcms
