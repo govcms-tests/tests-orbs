@@ -2,7 +2,7 @@ description: >
   GovCMS Tests Docker Image.
 docker:
   - image: 'govcmstesting/php:<<parameters.php_version>>'
-  - image: 'cimg/mariadb::<<parameters.mariadb_version>>'
+  - image: 'cimg/mariadb:<<parameters.mariadb_version>>'
 parameters:
   php_version:
     default: "8.2-apache"
