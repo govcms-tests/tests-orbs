@@ -1,0 +1,39 @@
+description: >
+  Install GovCMS site.
+
+executor: default
+
+working_directory: /app
+
+steps:
+  - checkout
+  - run:
+      name: Install GovCMS dependencies
+      command: |
+        composer update --profile --prefer-dist --optimize-autoloader
+  - run:
+      name: Get PHP and Drush version status
+      command: |
+        php -v
+        composer --version
+        bin/drush version
+  - run:
+      name: Setup webserver
+      command: |
+        echo "127.0.0.1 local.govcms.gov.au" | tee --append /etc/hosts
+        service apache2 restart
+  - run:
+      name: Install GovCMS site
+      command: >
+        cd web
+
+        ../bin/drush si -y govcms
+        --db-url=sqlite://localhost/sites/default/files/.ht.sqlite --site-name='GovCMS'
+        install_configure_form.enable_update_status_emails=NULL
+        install_configure_form.enable_update_status_module=NULL || true
+  - run:
+      name: Get site and module version status
+      command: |
+        cd web
+        ../bin/drush status
+        ../bin/drush pm:list --no-core
