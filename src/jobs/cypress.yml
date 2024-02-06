@@ -8,6 +8,10 @@ working_directory: /app
 steps:
   - checkout
   - run:
+      command: echo pwd
+  - run:
+      command: echo ls -al
+  - run:
       name: Install GovCMS distribution
       command: |
         composer update --profile --prefer-dist --optimize-autoloader
@@ -19,8 +23,6 @@ steps:
   - run:
       name: Install GovCMS site
       command: >
-        pwd
-        ls -al
         cd web
 
         ../bin/drush si -y govcms
