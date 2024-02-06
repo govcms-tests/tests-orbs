@@ -1,6 +1,8 @@
 description: |
   Check Drupal best practices.
+
 executor: default
+
 steps:
   - checkout
   - run:
