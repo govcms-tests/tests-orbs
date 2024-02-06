@@ -1,0 +1,19 @@
+description: |
+  Install GovCMS distribution.
+
+executor: default
+
+steps:
+  - checkout
+  - run:
+      name: Install GovCMS distribution
+      command: >
+        composer update --profile --prefer-dist --optimize-autoloader --no-scripts
+  - run:
+      name: List all packages within the GovCMS distribution
+      command: |
+        composer show -i -D
+  - run:
+      name: List outdated packages within the GovCMS distribution
+      command: |
+        composer outdated -D
