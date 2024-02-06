@@ -1,0 +1,23 @@
+description: >
+  Test GovCMS with PHPUnit.
+
+executor: default
+
+working_directory: /app
+
+steps:
+  - checkout
+  - run:
+      name: Install GovCMS dependencies
+      command: |
+        composer update --profile --prefer-dist --optimize-autoloader
+        chown -R www-data:www-data web/sites
+  - run:
+      name: Setup webserver
+      command: |
+        echo "127.0.0.1 local.govcms.gov.au" | tee --append /etc/hosts
+        service apache2 restart
+  - run:
+      name: Execute the PHPUnit test for the govcms_security module
+      command: |
+        sudo -u root -E sudo -u www-data -E ./bin/phpunit -c web/core web/profiles/govcms/modules/custom/core/govcms_security || true

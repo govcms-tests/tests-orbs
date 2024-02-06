@@ -1,13 +1,12 @@
 description: >
-  Sample description
-# What will this job do?
+  Hello GovCMS!
 
 executor: default
 
 parameters:
   to:
     type: string
-    default: "World"
+    default: "GovCMS"
     description: "Hello to whom?"
 steps:
   - greet:
