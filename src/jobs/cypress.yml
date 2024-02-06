@@ -8,9 +8,9 @@ working_directory: /app
 steps:
   - checkout
   - run:
-      command: echo pwd
+      command: echo $(pwd)
   - run:
-      command: echo ls -al
+      command: echo $(ls -al)
   - run:
       name: Install GovCMS distribution
       command: |
