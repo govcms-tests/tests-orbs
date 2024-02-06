@@ -1,0 +1,11 @@
+description: |
+  Validate composer.json.
+
+executor: default
+
+steps:
+  - checkout
+  - run:
+      name: Validate distribution composer.json
+      command: |
+        composer validate --no-check-all
