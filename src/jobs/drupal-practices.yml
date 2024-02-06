@@ -1,0 +1,14 @@
+description: |
+  Check Drupal best practices.
+executor: default
+steps:
+  - checkout
+  - run:
+      name: Checkout tests
+      command: |
+        composer create-project govcms/tests:3.x-dev tests
+  - run:
+      name: Check Drupal best practices
+      command: |
+        cd tests
+        ./vendor/bin/phpcs --standard=phpcs.govcms.xml || true
