@@ -35,6 +35,10 @@ steps:
         cp -r /tests /app/tests
         cd tests/cy && npm ci
   - run:
-      name: Install Cypress Dependencies
+      name: Run Cypress tests
       command: |
         cd tests/cy && npx cypress run --config baseUrl=http://local.govcms.gov.au/
+  - store_artifacts:
+      path: tests/cy/cypress/videos
+  - store_artifacts:
+      path: tests/cy/cypress/screenshots
