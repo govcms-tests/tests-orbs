@@ -8,10 +8,6 @@ working_directory: /app
 steps:
   - checkout
   - run:
-      command: echo $(pwd)
-  - run:
-      command: echo $(ls -al)
-  - run:
       name: Install GovCMS distribution
       command: |
         composer update --profile --prefer-dist --optimize-autoloader
@@ -28,6 +24,7 @@ steps:
         ../bin/drush si -y govcms
         --db-url=sqlite://sites/default/files/.ht.sqlite
         --site-name='GovCMS'
+        --account-name=admin
         --account-pass=password
         install_configure_form.enable_update_status_emails=NULL
         install_configure_form.enable_update_status_module=NULL || true
