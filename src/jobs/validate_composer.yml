@@ -1,7 +1,15 @@
 description: |
   Validate composer.json.
 
-executor: default
+parameters:
+  php_version:
+    type: string
+    default: "8.3-apache"
+    description: "The version of PHP to use."
+
+executor:
+  name: default
+  php_version: << parameters.php_version >>
 
 steps:
   - checkout
