@@ -1,5 +1,5 @@
 description: >
-  Test GovCMS with PHPUnit.
+  Test GovCMS using PHPUnit.
 
 parameters:
   php_version:
@@ -18,16 +18,20 @@ steps:
   - run:
       name: Install GovCMS dependencies
       command: |
-        mv /tests tests
-        jq '.autoload["psr-4"] += {"GovCMS\\Tests\\": "tests/phpunit/tests/GovCMS/"}' composer.json > temp.json && mv temp.json composer.json
         composer update --profile --prefer-dist --optimize-autoloader
         chown -R www-data:www-data web/sites
   - run:
-      name: Setup webserver
+      name: Set up the web server
       command: |
         echo "127.0.0.1 local.govcms.gov.au" | tee --append /etc/hosts
         service apache2 restart
   - run:
-      name: Execute the PHPUnit test for the govcms_security module
+      name: Set up the PHPUnit tests
+      command: |
+        mv /tests tests
+        jq '.autoload["psr-4"] += {"GovCMS\\Tests\\": "tests/phpunit/tests/GovCMS/"}' composer.json > temp.json && mv temp.json composer.json
+        composer dump-autoload -o
+  - run:
+      name: Run PHPUnit tests for the GovCMS distribution
       command: |
         sudo -u root -E sudo -u www-data -E ./bin/phpunit -c web/core tests/phpunit/tests/GovCMS --testdox
