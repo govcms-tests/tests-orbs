@@ -18,7 +18,7 @@ steps:
   - run:
       name: Install GovCMS dependencies
       command: |
-        mv /tests /app/tests
+        mv /tests tests
         jq '.autoload["psr-4"] += {"GovCMS\\Tests\\": "tests/phpunit/tests/GovCMS/"}' composer.json > temp.json && mv temp.json composer.json
         composer update --profile --prefer-dist --optimize-autoloader
         chown -R www-data:www-data web/sites
