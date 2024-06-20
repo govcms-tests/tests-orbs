@@ -28,4 +28,4 @@ steps:
   - run:
       name: Execute the PHPUnit test for the govcms_security module
       command: |
-        sudo -u root -E sudo -u www-data -E ./bin/phpunit -c web/core web/profiles/govcms/modules/custom/core/govcms_security || true
+        sudo -u root -E sudo -u www-data -E ./bin/phpunit -c web/core tests/phpunit/tests/GovCMS --testdox
