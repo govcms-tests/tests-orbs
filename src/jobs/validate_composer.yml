@@ -18,5 +18,5 @@ steps:
       command: |
         composer validate --no-check-all
   - run:
-    name: Check applied patches
-    command: <<include(scripts/check-patches.sh)>>
+      name: Check applied patches
+      command: <<include(scripts/check-patches.sh)>>
