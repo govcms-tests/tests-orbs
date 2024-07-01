@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 defined_patches=$(jq '.extra.patches | length' /app/composer.json)
 number_patches_applied=$(grep -c "patches_applied "/app/vendor/composer/installed.json)
 if [[ "$defined_patches" -ne "$number_patches_applied" ]]; then
