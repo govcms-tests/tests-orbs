@@ -17,3 +17,4 @@ steps:
       name: Validate distribution composer.json
       command: |
         composer validate --no-check-all
+        <<include(scripts/check-patches.sh)>>
