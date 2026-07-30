@@ -21,7 +21,7 @@ steps:
   - run:
       name: Install GovCMS distribution
       command: >
-        composer update --profile --prefer-dist --optimize-autoloader --no-scripts --no-security-blocking
+        composer update --profile --prefer-dist --optimize-autoloader --no-scripts
   - run:
       name: Composer security audit
       command: composer audit --locked
