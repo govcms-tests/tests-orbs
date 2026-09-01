@@ -37,7 +37,7 @@ steps:
   - run:
       name: Install Cypress Dependencies
       command: |
-        composer create-project govcms/tests:3.x-dev tests
+        composer create-project govcms/tests:4.x-dev tests
         cd tests/cy && npm ci
   - run:
       name: Run Cypress tests
