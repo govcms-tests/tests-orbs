@@ -34,7 +34,7 @@ steps:
         drush si -y govcms
         --db-url=sqlite://localhost/sites/default/files/.ht.sqlite --site-name='GovCMS'
         install_configure_form.enable_update_status_emails=NULL
-        install_configure_form.enable_update_status_module=NULL || true
+        install_configure_form.enable_update_status_module=NULL
   - run:
       name: Get site and module version status
       command: |

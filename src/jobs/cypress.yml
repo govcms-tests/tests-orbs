@@ -29,7 +29,7 @@ steps:
         --site-name='GovCMS'
         --account-pass=password
         install_configure_form.enable_update_status_emails=NULL
-        install_configure_form.enable_update_status_module=NULL || true
+        install_configure_form.enable_update_status_module=NULL
 
         chmod 755 /app/web/sites/default
 
