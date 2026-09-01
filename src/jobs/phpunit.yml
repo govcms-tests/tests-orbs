@@ -23,7 +23,7 @@ steps:
       command: composer update --profile --prefer-dist --optimize-autoloader
   - run:
       name: Set up the PHPUnit tests
-      command: git clone --depth 1 -b 3.x-develop https://github.com/govcms-tests/tests.git /app/tests
+      command: git clone --depth 1 -b 4.x-develop https://github.com/govcms-tests/tests.git /app/tests
   - run:
       name: Run PHPUnit tests
       command: phpunit --bootstrap /app/tests/phpunit/bootstrap.php --configuration /app/tests/phpunit/phpunit.xml --testdox --testsuite govcms-integration
