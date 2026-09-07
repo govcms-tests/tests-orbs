@@ -4,7 +4,7 @@ description: |
 parameters:
   php_version:
     type: string
-    default: "latest-php8.3-apache"
+    default: "latest-php8.4-apache"
     description: "The version of PHP to use."
 
 executor:

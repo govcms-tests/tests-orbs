@@ -5,7 +5,7 @@ docker:
     command: ["apache2-foreground"]
 parameters:
   php_version:
-    default: "latest-php8.3-apache"
+    default: "latest-php8.4-apache"
     description: >
       The version of PHP to use.
     type: string
