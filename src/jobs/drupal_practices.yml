@@ -25,5 +25,8 @@ steps:
   - run:
       name: Check Drupal best practices
       command: |
-        cd tests
-        ./vendor/bin/phpcs --standard=phpcs.govcms.xml || true
+        cd /app/tests
+        ./vendor/bin/phpcs \
+        --standard=phpcs.govcms.xml \
+        --ignore='/app/tests/*' \
+        /app || true
