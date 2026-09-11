@@ -1,0 +1,27 @@
+description: |
+  Perform composer audit of GovCMS Distribution
+
+parameters:
+  php_version:
+    type: string
+    default: "latest-php8.3-apache"
+    description: "The version of PHP to use."
+
+executor:
+  name: default
+  php_version: << parameters.php_version >>
+
+working_directory: /app
+
+steps:
+  - run:
+      name: Clean Working Directory
+      command: find /app -mindepth 1 -delete
+  - checkout
+  - run:
+      name: Install GovCMS distribution
+      command: >
+        composer update --profile --prefer-dist --optimize-autoloader --no-scripts
+  - run:
+      name: Composer security audit
+      command: composer audit --locked
