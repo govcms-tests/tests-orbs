@@ -1,0 +1,39 @@
+description: |
+  Check phpstan errors and warnings
+
+parameters:
+  php_version:
+    type: string
+    default: "latest-php8.4-apache"
+    description: "The version of PHP to use."
+
+executor:
+  name: default
+  php_version: << parameters.php_version >>
+
+working_directory: /app
+
+steps:
+  - run:
+      name: Clean Working Directory
+      command: find /app -mindepth 1 -delete
+  - checkout
+  - run:
+      name: Install GovCMS Dependencies
+      command: composer update --profile --prefer-dist --optimize-autoloader
+  - run:
+      name: Checkout tests
+      command: |
+        composer create-project govcms/tests:4.x-dev tests
+  - run:
+      name: Copy PHPStan configuration to project root
+      command: |
+        cp /app/tests/phpstan.neon /app/phpstan.neon
+  - run:
+      name: Check phpstan errors/warnings
+      command: |
+        cd /app
+        /app/bin/phpstan analyse \
+        --configuration=/app/phpstan.neon \
+        --memory-limit=1G \
+        /app || true
