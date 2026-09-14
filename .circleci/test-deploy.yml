@@ -19,6 +19,7 @@ release-filters: &release-filters
   tags:
     only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
 
+# Filter for pushes to the develop branch, excluding tags.
 develop-filters: &develop-filters
   branches:
     only: develop
@@ -55,9 +56,12 @@ workflows:
             - command-test
           context: orb-publishing
           filters: *release-filters
+      # Pack the orb source from src for development publishing.
       - orb-tools/pack:
           name: pack-development
           filters: *develop-filters
+      # Publish govcms/tests@dev:develop
+      # This updates the development version of the orb without changing production versions.
       - orb-tools/publish:
           name: publish-development
           orb_name: govcms/tests
