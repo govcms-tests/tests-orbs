@@ -26,10 +26,14 @@ steps:
       command: |
         composer create-project govcms/tests:4.x-dev tests
   - run:
+      name: Copy PHPStan configuration to project root
+      command: |
+        cp /app/tests/phpstan.neon /app/phpstan.neon
+  - run:
       name: Check phpstan errors/warnings
       command: |
         cd /app
         /app/bin/phpstan analyse \
-        --configuration=/app/tests/phpstan.neon \
+        --configuration=/app/phpstan.neon \
         --memory-limit=1G \
         /app || true
