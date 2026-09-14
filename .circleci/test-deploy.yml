@@ -19,6 +19,12 @@ release-filters: &release-filters
   tags:
     only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
 
+develop-filters: &develop-filters
+  branches:
+    only: develop
+  tags:
+    ignore: /.*/
+
 jobs:
   # Create jobs to test the commands of your orbs.
   # You may want to add additional validation steps to ensure the commands are working as expected.
@@ -49,3 +55,18 @@ workflows:
             - command-test
           context: orb-publishing
           filters: *release-filters
+      - orb-tools/pack:
+          name: pack-development
+          filters: *develop-filters
+      - orb-tools/publish:
+          name: publish-development
+          orb_name: govcms/tests
+          vcs_type: github
+          pub_type: dev
+          dev_tags: "dev:develop"
+          enable_pr_comment: false
+          requires:
+            - pack-development
+            - command-test
+          context: orb-publishing
+          filters: *develop-filters
