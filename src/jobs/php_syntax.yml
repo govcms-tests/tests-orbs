@@ -1,0 +1,32 @@
+description: |
+  Check PHP syntax errors.
+
+parameters:
+  php_version:
+    type: string
+    default: "latest-php8.4-apache"
+    description: "The version of PHP to use."
+
+executor:
+  name: default
+  php_version: << parameters.php_version >>
+
+working_directory: /app
+
+steps:
+  - run:
+      name: Clean Working Directory
+      command: find /app -mindepth 1 -delete
+  - checkout
+  - run:
+      name: Checkout tests
+      command: |
+        composer create-project govcms/tests:4.x-dev tests
+  - run:
+      name: Check PHP syntax errors
+      command: |
+        cd tests
+        ./vendor/bin/parallel-lint \
+        -e php,module,inc,install,profile,theme \
+        --exclude /app/tests \
+        /app
